@@ -6,7 +6,7 @@ const userController = {};
 
 userController.createUser = async (req, res, next) => {
   try {
-    const existingUserQuery = `SELECT * FROM "user" WHERE username = $1`;
+    const existingUserQuery = `SELECT * FROM "users" WHERE username = $1`;
     const existingUserValues = [req.body.username];
     // Check if the username already exists
     const existingUserResult = await db.query(
@@ -21,7 +21,7 @@ userController.createUser = async (req, res, next) => {
       SALT_WORK_FACTOR
     );
     //INSERT INTO "user" (username, password) VALUES ('user1', 'pw');
-    const insertQuery = `INSERT INTO "user" (username, password) VALUES($1, $2) RETURNING *`;
+    const insertQuery = `INSERT INTO "users" (username, password) VALUES($1, $2) RETURNING *`;
     const insertValues = [req.body.username, hashingPassword];
     // Execute the SQL query to insert the user
     const createUser = await db.query(insertQuery, insertValues);
@@ -40,7 +40,7 @@ userController.verifyUser = async (req, res, next) => {
   try {
     //Deconstruct username and password from body
     const { username, password } = req.body;
-    const checkingUserExists = `SELECT * FROM "user" WHERE username = $1`;
+    const checkingUserExists = `SELECT * FROM "users" WHERE username = $1`;
     const values = [username];
     const userInfo = await db.query(checkingUserExists, values);
     console.log(userInfo.rows);

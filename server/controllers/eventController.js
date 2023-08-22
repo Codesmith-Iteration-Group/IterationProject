@@ -112,8 +112,8 @@ eventController.getEventsForUser = async (req, res, next) => {
     const userId = req.cookies.userId;
     const getInvitedEventsQuery = `
       SELECT * FROM "events"
-      INNER JOIN invitation ON events.event_id = invitation.event
-      WHERE invitation.user = $1;
+      INNER JOIN invitation ON events.event_id = invitation.event_id
+      WHERE invitation.user_id = $1;
     `;
     const events = await db.query(getInvitedEventsQuery, [userId]);
     // console.log(events.fields);
