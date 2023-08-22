@@ -18,38 +18,34 @@ import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
-
-
-
 const LogIn = () => {
-//   console.log('you are rendering a login page');
+  //   console.log('you are rendering a login page');
   const navigate = useNavigate();
   const defaultTheme = createTheme();
 
   const login = async (uname, pass) => {
-    try{
+    try {
       const result = await axios.post('http://localhost:3000/user/login', {
         username: uname,
         password: pass,
       });
-      if(result){
+      if (result) {
         navigate('/');
       }
-   }
-   catch(err){
+    } catch (err) {
       console.log(err);
-   }
-  }
+    }
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     //console.log(data);
     login(data.get('username'), data.get('password'));
-   }
+  };
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component='main' maxWidth='xs'>
         <CssBaseline />
         <Box
           sx={{
@@ -62,45 +58,50 @@ const LogIn = () => {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component='h1' variant='h5'>
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box
+            component='form'
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
             <TextField
-              margin="normal"
+              margin='normal'
               required
               fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              autoComplete="username"
+              id='username'
+              label='Username'
+              name='username'
+              autoComplete='username'
               autoFocus
             />
             <TextField
-              margin="normal"
+              margin='normal'
               required
               fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
+              name='password'
+              label='Password'
+              type='password'
+              id='password'
+              autoComplete='current-password'
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              control={<Checkbox value='remember' color='primary' />}
+              label='Remember me'
             />
             <Button
-              type="submit"
+              type='submit'
               fullWidth
-              variant="contained"
+              variant='contained'
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/user/signup" variant="body2">
+                <Link href='/user/signup' variant='body2'>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
@@ -110,6 +111,6 @@ const LogIn = () => {
       </Container>
     </ThemeProvider>
   );
-}
+};
 
 export default LogIn;
