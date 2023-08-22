@@ -42,26 +42,29 @@ userController.verifyUser = async (req, res, next) => {
     const { username, password } = req.body;
     const checkingUserExists = `SELECT * FROM "user" WHERE username = $1`;
     const values = [username];
-    const userInfo = await db.query(checkingUserExists, values)
-    console.log(userInfo.rows)
+    const userInfo = await db.query(checkingUserExists, values);
+    console.log(userInfo.rows);
     if (userInfo.rows.length === 0) {
-        // return not found user
-        // return res.status(400).json({ message: 'User not found' });
-        return next({
-            log: 'Middleware verifyUser receiving data error',
-            status : 406,
-            message: {err: 'User not found' },
-        });
+      // return not found user
+      // return res.status(400).json({ message: 'User not found' });
+      return next({
+        log: 'Middleware verifyUser receiving data error',
+        status: 406,
+        message: { err: 'User not found' },
+      });
     }
     // check if password is matched
-    const checkingHashedPassword = await bcrypt.compare(password, userInfo.rows[0].password);
+    const checkingHashedPassword = await bcrypt.compare(
+      password,
+      userInfo.rows[0].password
+    );
     if (!checkingHashedPassword) {
-        //return hashedpassword is not matched
-        return next({
-            log: 'Middleware verifyUser password does not error',
-            status : 401,
-            message: {err: 'Password is not correct' },
-        });
+      //return hashedpassword is not matched
+      return next({
+        log: 'Middleware verifyUser password does not error',
+        status: 401,
+        message: { err: 'Password is not correct' },
+      });
     }
     res.locals.userInfo = userInfo.rows[0];
     res.locals.userId = userInfo.rows[0].user_id;

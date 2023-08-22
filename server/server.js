@@ -9,21 +9,33 @@ const eventRouter = require('./router/eventRouter');
 
 app.use(cookieParser());
 /**
-* Automatically parse urlencoded body content and form data from incoming requests and place it
-* in req.body
-*/
+ * Automatically parse urlencoded body content and form data from incoming requests and place it
+ * in req.body
+ */
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
-
-app.use('/user', (req, res, next) => {console.log('going to user router'); next();}, userRouter); 
-app.use('/event', eventRouter); 
-app.use('/', (req, res, next) => {console.log(path.resolve(__dirname, '../dist')); next();}, express.static(path.resolve(__dirname, '../dist'))); //dist has all the static file
+app.use(
+  '/user',
+  (req, res, next) => {
+    console.log('going to user router');
+    next();
+  },
+  userRouter
+);
+app.use('/event', eventRouter);
+app.use(
+  '/',
+  (req, res, next) => {
+    console.log(path.resolve(__dirname, '../dist'));
+    next();
+  },
+  express.static(path.resolve(__dirname, '../dist'))
+); //dist has all the static file
 
 /**
  * define route handlers
  */
-
 
 // catch-all route handler for any requests to an unknown route
 //app.use((req, res) => res.status(404).send('This is not the page you\'re looking for...'));
@@ -35,22 +47,22 @@ app.use('/', (req, res, next) => {console.log(path.resolve(__dirname, '../dist')
 /**
  * 404 handler
  */
-app.use('*', (req,res) => {
-    res.status(404).send('Not Found');
-  });
+app.use('*', (req, res) => {
+  res.status(404).send('Not Found');
+});
 /**
  * Global error handler
  */
 app.use((err, req, res, next) => {
-    console.log(err);
-    res.status(500).send({ error: err });
-  });
+  console.log(err);
+  res.status(500).send({ error: err });
+});
 
 /**
  * start server
  */
 app.listen(PORT, () => {
-    console.log(`Server listening on port: ${PORT}...`);
-  });
-  
-  module.exports = app;
+  console.log(`Server listening on port: ${PORT}...`);
+});
+
+module.exports = app;

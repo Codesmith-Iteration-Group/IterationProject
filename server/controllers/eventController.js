@@ -144,14 +144,13 @@ eventController.getTimesForEvent = async (req, res, next) => {
   try {
     //needs to be req.query.event
     console.log(req.query, req.query.event);
-    const event_id  = req.query.event;
+    const event_id = req.query.event;
     const getOrganizer = 'SELECT * from "events" WHERE "event_id" = $1;';
     const gettingOrganizerId = await db.query(getOrganizer, [event_id]);
     console.log(gettingOrganizerId.rows);
     const organizer_id = gettingOrganizerId.rows[0].organizer_id;
     console.log('org_id ', organizer_id, ' event_id', event_id);
-    const getTimes =
-      `SELECT * from "user_availability" WHERE "user" = $1 AND "event" = $2;`;
+    const getTimes = `SELECT * from "user_availability" WHERE "user" = $1 AND "event" = $2;`;
     const gettingTimes = await db.query(getTimes, [organizer_id, event_id]);
     console.log(gettingTimes);
     const result = [];
@@ -181,8 +180,7 @@ eventController.inviteeChooseEventTime = async (req, res, next) => {
   try {
     //const choosingTimes = [];
     const { event_id, times } = req.body;
-    const chooseTimes =
-      `INSERT INTO "user_availability" ("user", "event", "available_start_time", "available_end_time") VALUES($1, $2, $3, $4) RETURNING *;`;
+    const chooseTimes = `INSERT INTO "user_availability" ("user", "event", "available_start_time", "available_end_time") VALUES($1, $2, $3, $4) RETURNING *;`;
     const userId = req.cookies.userId;
     for (let i = 0; i < times.length; i++) {
       //times[i].start
