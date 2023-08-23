@@ -24,22 +24,40 @@ const LogIn = () => {
   const defaultTheme = createTheme();
 
   const login = async (uname, pass) => {
+
+    
+
     try {
-      const result = await axios.post('http://localhost:3000/user/login', {
-        username: uname,
-        password: pass,
-      });
+
+      const result = await fetch('http://localhost:3000/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          username: uname,
+          password: pass,
+        })
+      })
+      // const result = await axios.post('http://localhost:3000/user/login', {
+      //   username: uname,
+      //   password: pass,
+      // },{
+      //   credentials: "include"
+      // });
       if (result) {
-        navigate('/');
+        navigate('/user/home');
       }
     } catch (err) {
       console.log(err);
     }
   };
+  
   const handleSubmit = (event) => {
+    console.log('event', event)
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    //console.log(data);
     login(data.get('username'), data.get('password'));
   };
 

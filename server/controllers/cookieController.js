@@ -4,10 +4,12 @@ const cookieController = {};
 
 // creating a cookie middleware
 cookieController.setCookie = (req, res, next) => {
+  console.log('COOKIE BEING MADE')
   console.log('res.locals.userid: ', res.locals.userId);
   // format: res.cookie(name, value, {options});
   // ex. --> res.cookie('cookieName', '34x7f90', { maxAge: 900000, httpOnly: true });
   res.cookie('userId', res.locals.userId, {});
+  // console.log('cookie', testCookie);
   return next();
 };
 

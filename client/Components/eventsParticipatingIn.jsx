@@ -1,4 +1,13 @@
 import React from "react";
+import Event from './Event.jsx';
+import {
+  Box,
+  Button,
+  Typography,
+  Container,
+  Divider,
+  Notification,
+} from '@mui/material';
 
 const eventsParticipatingIn = (props) => {
   // destructure props for relevant data
@@ -10,18 +19,8 @@ const eventsParticipatingIn = (props) => {
         <Typography variant="h5" marginBottom="1rem">
           Events you are participating in:
         </Typography>
-        {pEvents.map((event) => (
-          <Container>
-            <Box key={event.event_id}>{event.event_name}</Box>
-            <Button
-              onClick={() => {
-                set(event);
-                navigate("/event/select-times");
-              }}
-            >
-              Set your availability
-            </Button>
-          </Container>
+        {props.eventsParticipatingIn.map((event) => (
+          <Event />
         ))}
       </Box>
     </div>

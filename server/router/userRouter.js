@@ -27,7 +27,7 @@ router.post('/signup', userController.createUser, (req, res) => {
 /**
  * login
  */
-router.use('/login', express.static(path.resolve(__dirname, '../../dist'))); //using the react router, redirect to the login page
+// router.use('/login', express.static(path.resolve(__dirname, '../../dist'))); //using the react router, redirect to the login page
 
 router.post(
   '/login',

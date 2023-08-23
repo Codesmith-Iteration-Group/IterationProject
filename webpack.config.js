@@ -55,18 +55,18 @@ module.exports = {
      * to localhost:3000/api/* (where our Express server is running)
      */
     proxy: {
-      '/notes/**': {
+      '/**': {
         target: 'http://localhost:3000/',
         secure: false,
       },
-      '/login/**': {
-        target: 'http://localhost:3000/',
-        secure: false,
-      },
-      '/signup/**': {
-        target: 'http://localhost:3000/',
-        secure: false,
-      },
+      // '/login/**': {
+      //   target: 'http://localhost:3000/',
+      //   secure: false,
+      // },
+      // '/signup/**': {
+      //   target: 'http://localhost:3000/',
+      //   secure: false,
+      // },
     },
   },
   plugins: [

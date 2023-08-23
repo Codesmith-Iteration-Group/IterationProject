@@ -1,0 +1,4 @@
+
+
+export const GET_HOST_EVENTS = 'GET_HOST_EVENTS';
+export const GET_PART_EVENTS = 'GET_PART_EVENTS';
