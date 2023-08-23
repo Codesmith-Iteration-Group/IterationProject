@@ -18,6 +18,8 @@ import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
+import { getHostEvents, getPartEvents } from '../actions/actions.js';
+
 const LogIn = () => {
   //   console.log('you are rendering a login page');
   const navigate = useNavigate();
@@ -40,13 +42,15 @@ const LogIn = () => {
           password: pass,
         })
       })
+      console.log('result is: ', result);
       // const result = await axios.post('http://localhost:3000/user/login', {
       //   username: uname,
       //   password: pass,
       // },{
       //   credentials: "include"
       // });
-      if (result) {
+      if (result.ok) {
+        this.props.dispatch(getHostEvents());
         navigate('/user/home');
       }
     } catch (err) {

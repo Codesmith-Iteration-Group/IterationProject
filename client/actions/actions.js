@@ -4,7 +4,7 @@ import * as types from "../constants/actionTypes";
 export const getHostEvents = (event) => (dispatch, getState) => {
   // event.preventDefault();
   axios
-    .get("/organizer-invited-events")
+    .get("/event/organizer-invited-events")
     .then(({ events }) => {
       dispatch({
         type: types.GET_HOST_EVENTS,
@@ -17,7 +17,7 @@ export const getHostEvents = (event) => (dispatch, getState) => {
 export const getPartEvents = (event) => (dispatch, getState) => {
 	// event.preventDefault();
   axios
-    .get("/user-invited-events")
+    .get("/event/user-invited-events")
     .then(({ events }) => {
       dispatch({
         type: types.GET_PART_EVENTS,

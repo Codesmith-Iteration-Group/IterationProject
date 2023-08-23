@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LogIn from "./Containers/Login.jsx";
 import SignUp from "./Containers/Signup.jsx";
 import NewHomePage from "./Containers/NewHomePage.jsx";
-import NewCreateEvent from "./Containers/NewCreateEvent.jsx"
+import NewCreateEvent from "./Containers/NewCreateEvent.jsx";
 
 const App = () => {
   return (

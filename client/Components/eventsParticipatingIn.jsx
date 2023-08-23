@@ -11,7 +11,7 @@ import {
 
 const eventsParticipatingIn = (props) => {
   // destructure props for relevant data
-
+  console.log('props in eventsParticipating in: ', props)
   // return component render
   return (
     <div>
@@ -19,9 +19,11 @@ const eventsParticipatingIn = (props) => {
         <Typography variant="h5" marginBottom="1rem">
           Events you are participating in:
         </Typography>
-        {props.eventsParticipatingIn.map((event) => (
-          <Event />
-        ))}
+				<Container>
+					{props.eventsParticipatingIn.map((event) => ( 
+            <Event eventName={event}/> 
+          ))}
+				</Container>
       </Box>
     </div>
   );

@@ -19,16 +19,19 @@ import Event from './Event.jsx';
 const EventsHosting = (props) => {
   // return component render
 
-  console.log('props', props)
+  console.log('props in EventsHosting: ', props)
 
   return (
     <Box flex="1" marginRight="1rem">
       <Typography variant="h5" marginBottom="1rem">
         Events you are hosting:
+        {props.eventsHosting}
       </Typography>
-      {props.eventsHosting.map((event) => (
-        <Event />
-      ))}
+      <Container>
+        {props.eventsHosting.map((event) => (
+          <Event eventName={event.location}/>
+        ))}
+      </Container>
     </Box>
   );
 };

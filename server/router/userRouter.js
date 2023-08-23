@@ -15,7 +15,7 @@ const path = require('path');
 /**
  * signup
  */
-router.use('/signup', express.static(path.resolve(__dirname, '../../dist'))); //react router don't need each html page, send everything in the dist folder
+// router.use('/signup', express.static(path.resolve(__dirname, '../../dist'))); //react router don't need each html page, send everything in the dist folder
 
 //no session cookie, stretch feature
 // create an account, redirect user to login page when successful
@@ -28,6 +28,10 @@ router.post('/signup', userController.createUser, (req, res) => {
  * login
  */
 // router.use('/login', express.static(path.resolve(__dirname, '../../dist'))); //using the react router, redirect to the login page
+router.get('/home', (req, res) => {
+  res.status(200)
+});
+
 
 router.post(
   '/login',
