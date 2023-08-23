@@ -1,15 +1,19 @@
+const db = require('../models/model');
+
 const cookieController = {};
 
+// creating a cookie middleware
 cookieController.setCookie = (req, res, next) => {
   console.log('res.locals.userid: ', res.locals.userId);
-  //setting the cookie = userID, passed in through saving in res.locals.userID in previous middleware
+  // format: res.cookie(name, value, {options});
+  // ex. --> res.cookie('cookieName', '34x7f90', { maxAge: 900000, httpOnly: true });
   res.cookie('userId', res.locals.userId, {});
   return next();
 };
-// cookieController.checkCookie = (req, res, next) => {
-//   //setting the cookie = userID, passed in through saving in res.locals.userID in previous middleware
-//   res.cookie('username', req.body.username, {});
-//   return next();
-// }
-//req.
+
+// checking to see if a cookie exists middleware
+cookieController.checkCookie = (req, res, next) => {
+
+}
+
 module.exports = cookieController;

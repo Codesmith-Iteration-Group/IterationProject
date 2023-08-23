@@ -7,21 +7,30 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import de from 'date-fns/locale/de';
 
 const TimeSelector = (props) => {
+
   const [startTime, setStart] = useState();
+
   const [endTime, setEnd] = useState();
+	// av = available times (in CreateEvent.jsx)
+	// set = available times setter function (in CreateEvent.jsx)
   const { av, set } = props;
-  let start, end;
+
+  let start
+  let end;
+
   if (props && props.timeConstraints) {
     start = new Date(props.timeConstraints.start);
     end = new Date(props.timeConstraints.end);
   }
 
+	// upon pressing time-selector 'SUBMIT' button...
   const handleClick = (event) => {
     const copy = [...av];
     copy.push({ start: startTime, end: endTime });
     set(copy);
   };
 
+  
   return (
     <Container maxWidth='md'>
       <LocalizationProvider dateAdapter={AdapterDateFns}>

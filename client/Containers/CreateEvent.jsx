@@ -19,15 +19,21 @@ import { useNavigate } from 'react-router-dom';
 
 export default function CreateEvent() {
   // const [selectedDates, setSelectedDates] = useState([{ start: new Date(), end: new Date() }]);
+  
+  // array of people to invite
   const [invitee, setInvitee] = useState([]);
+  // name of event (string)
   const [eventName, setEventName] = useState('');
+  // event location (string)
   const [eventLocation, setEventLocation] = useState('');
+  // event details (string)
   const [eventDetails, setEventDetails] = useState('');
+  // array of available times
   const [availableTimes, setAvailableTimes] = useState([]);
-  const [usernames, setUsernames] = useState(['John', 'Mary', 'Bill', 'Sue']);
-  const [selectors, setSelectors] = useState([
-    <TimeSelector av={availableTimes} set={setAvailableTimes} />,
-  ]);
+  // array of all usernames in the database
+  const [usernames, setUsernames] = useState(['No one available for selection']);
+  // times deemed as being 'available' upon event creation
+  const [selectors, setSelectors] = useState([ <TimeSelector av={availableTimes} set={setAvailableTimes} /> ]);
 
   const navigate = useNavigate();
   //console.log(invitee);
@@ -36,23 +42,25 @@ export default function CreateEvent() {
   // };
 
   useEffect(() => {
+    // function for fetching ALL usernames from database for invitee list
     const fetchUsernames = async () => {
       try {
         const response = await axios.get(
           'http://localhost:3000/event/getAllUsernames'
         );
+        // update state to include this data
         setUsernames(response.data);
       } catch (error) {
         console.error('Error fetching usernames:', error);
       }
     };
-
+    // invoke function above^ - happens upon page rendering only
     fetchUsernames();
   }, []);
 
+  // invoked upon pressing "Add another availability window"
   const handleAddDateTime = () => {
-    //setSelectedDates([...selectedDates, { start: new Date(), end: new Date() }]);
-    //need to render a second TimeSel,ector
+    //need to render a second TimeSelector (??)
     const copy = [...selectors];
     copy.push(<TimeSelector av={availableTimes} set={setAvailableTimes} />);
     console.log(copy);
@@ -60,7 +68,7 @@ export default function CreateEvent() {
   };
 
   const createTheEvent = async () => {
-    //for when backend is set up
+    //for when backend is set up (??)
 
     try {
       const result = await axios.post(
@@ -79,20 +87,13 @@ export default function CreateEvent() {
     } catch (err) {
       console.log(err);
     }
-
-    // console.log({
-    //       event_name: eventName,
-    //       location: eventLocation,
-    //       details: eventDetails,
-    //       times: availableTimes,
-    //       users: invitee,
-    //     })
   };
 
   const handleClick = (event) => {
     createTheEvent();
   };
 
+  // (??)
   // const handleSubmit = (event) => {
   //     event.preventDefault();
   //     const data = new FormData(event.currentTarget);
@@ -103,6 +104,7 @@ export default function CreateEvent() {
   //     });
   //   };
 
+  // create an array that has list of ALL users in database for invitee selection
   const nameOptions = [];
   for (let user of usernames) {
     nameOptions.push(<MenuItem value={user}>{user}</MenuItem>);
@@ -153,7 +155,8 @@ export default function CreateEvent() {
         Add another availability window
       </Button>
 
-      {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
+      {/* (??)
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
                 {selectedDates.map((date, idx) => (
                     <Box key={idx} display="flex" alignItems="center" marginY={2}>
                         <DesktopDateTimePicker
@@ -208,6 +211,7 @@ export default function CreateEvent() {
   );
 }
 
+// (??)
 // import React, { useState } from 'react';
 // import TimeSelector from '../Components/TimeSelector.jsx';
 // import {

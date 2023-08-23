@@ -11,10 +11,13 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <HomePage set={setEvent} />,
+      // element: <HomePage set={setEvent} />,
+      element: <LogIn />,
+      
     },
     {
-      path: '/user/login',
+      path: '/login',
+      // element: <HomePage set={setEvent} />,
       element: <LogIn />,
     },
     {
