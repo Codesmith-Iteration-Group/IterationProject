@@ -25,11 +25,11 @@ const EventsHosting = (props) => {
     <Box flex="1" marginRight="1rem">
       <Typography variant="h5" marginBottom="1rem">
         Events you are hosting:
-        {props.eventsHosting}
+        {/* {props.eventsHosting} */}
       </Typography>
       <Container>
-        {props.eventsHosting.map((event) => (
-          <Event eventName={event.location}/>
+        {props.eventsHosting.data.map((event) => (
+          <Event eventDetails={event.details} eventLocation={event.location} />
         ))}
       </Container>
     </Box>

@@ -3,9 +3,10 @@ import * as types from "../constants/actionTypes";
 
 export const getHostEvents = (event) => (dispatch, getState) => {
   // event.preventDefault();
+  console.log('inside of getHostEvents action')
   axios
     .get("/event/organizer-invited-events")
-    .then(({ events }) => {
+    .then((events) => {
       dispatch({
         type: types.GET_HOST_EVENTS,
         payload: events,
@@ -18,7 +19,7 @@ export const getPartEvents = (event) => (dispatch, getState) => {
 	// event.preventDefault();
   axios
     .get("/event/user-invited-events")
-    .then(({ events }) => {
+    .then((events) => {
       dispatch({
         type: types.GET_PART_EVENTS,
         payload: events,

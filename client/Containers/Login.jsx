@@ -14,11 +14,12 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
 import { getHostEvents, getPartEvents } from '../actions/actions.js';
+
 
 const LogIn = () => {
   //   console.log('you are rendering a login page');
@@ -42,15 +43,16 @@ const LogIn = () => {
           password: pass,
         })
       })
-      console.log('result is: ', result);
+      // console.log('result is: ', result);
       // const result = await axios.post('http://localhost:3000/user/login', {
       //   username: uname,
       //   password: pass,
       // },{
       //   credentials: "include"
       // });
-      if (result.ok) {
-        this.props.dispatch(getHostEvents());
+      if (result) {
+        console.log('result hit')
+        //dispatch(getHostEvents());  <<<<<----- NEED TO FOLLOW THIS... AS SOON AS ITS IN THE CODE IT BREAKS
         navigate('/user/home');
       }
     } catch (err) {
@@ -64,6 +66,7 @@ const LogIn = () => {
     const data = new FormData(event.currentTarget);
     login(data.get('username'), data.get('password'));
   };
+
 
   return (
     <ThemeProvider theme={defaultTheme}>

@@ -20,8 +20,8 @@ const eventsParticipatingIn = (props) => {
           Events you are participating in:
         </Typography>
 				<Container>
-					{props.eventsParticipatingIn.map((event) => ( 
-            <Event eventName={event}/> 
+					{props.eventsParticipatingIn.data.map((event) => ( 
+            <Event eventName={event.location}/> 
           ))}
 				</Container>
       </Box>

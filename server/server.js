@@ -20,14 +20,7 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use(
-  '/user',
-  (req, res, next) => {
-    console.log('going to user router');
-    next();
-  },
-  userRouter
-);
+app.use('/user',userRouter);
 
 app.use('/event', eventRouter);
 

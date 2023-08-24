@@ -11,10 +11,10 @@ import {
 
 // this file is a strech feature
 
-const Event = ({ eventName }) => {
+const Event = ({ eventDetails, eventLocation }) => {
   return (
     <Container>
-      <Typography>Event: {eventName}</Typography>
+      <Typography>Event Details: {eventDetails} Location: {eventLocation}</Typography>
     </Container>
   );
 };

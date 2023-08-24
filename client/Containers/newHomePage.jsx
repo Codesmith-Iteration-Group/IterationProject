@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useSelector, connect } from "react-redux";
 import * as actions from "../actions/actions";
 
+
 // import the components below
 import EventsHosting from "../Components/eventsHosting.jsx";
 import EventsParticipatingIn from "../Components/eventsParticipatingIn.jsx";
+
+import store from '../store.js'
 
 const mapStateToProps = ({
 	events: { eventsHosting, eventsParticipatingIn },
@@ -17,17 +20,18 @@ const mapStateToProps = ({
 
 const homePage = (props) => {
   // grab necessary pieces of state assigned to variables from store (useSelector)
+  let result;
+  useEffect(() => {
 
-  // useEffect(async (dispatch) => {
-  // 	// this function will run upon intial page render to get hosted events
-  // 	//fetch
-  // 	dispatch(actions.getHostEvents())
-  // 	// setEventHosing passing data
-  // 	.then((events) => {
-  // 		eventsHosting = events
-  // 	})
-  // }, []);
+  	result = props.dispatch(actions.getHostEvents())
+
+  }, []);
+  console.log('result: ', result)
 	console.log("props in homepage: ", props);
+  
+  // const result = props.dispatch(actions.getHostEvents());
+  // console.log('result of dispatch: ', result);
+  // props.dispatch(getPartEvents());
 
   // return our element tags and components (passing down the retrieved state)
   return (

@@ -44,7 +44,7 @@ userController.verifyUser = async (req, res, next) => {
     const checkingUserExists = `SELECT * FROM "users" WHERE username = $1`;
     const values = [username];
     const userInfo = await db.query(checkingUserExists, values);
-    console.log('login user info:', userInfo.rows);
+    //console.log('login user info:', userInfo.rows);
     if (userInfo.rows.length === 0) {
       // return not found user
       // return res.status(400).json({ message: 'User not found' });

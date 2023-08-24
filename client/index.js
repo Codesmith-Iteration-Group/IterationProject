@@ -1,6 +1,6 @@
 import React from "react";
 
-import App from "./newApp.jsx";
+import NewApp from "./newApp.jsx";
 
 
 import store from './store.js';
@@ -11,6 +11,6 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
   <Provider store={store}>
-    <App />
+    <NewApp />
   </Provider>
 );
