@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Event from './Event.jsx';
+import { blue } from '@mui/material/colors';
 
 // NOTE:
 // put button inside of this component for new event hosting
@@ -23,15 +24,20 @@ const EventsHosting = (props) => {
 
   return (
     <Box flex="1" marginRight="1rem">
-      <Typography variant="h5" marginBottom="1rem">
-        Events you are hosting:
-        {/* {props.eventsHosting} */}
-      </Typography>
-      <Container>
+
+      <div id="hostingCard">
+        <h1>Events you are hosting</h1>
+      <table>
+        <tr>
+          <th style={{paddingRight: '200px', fontSize: '26px'}}>Event Name</th>
+          <th style={{paddingRight: '200px', fontSize: '26px'}}>Event Details</th>
+          <th style={{paddingRight: '200px', fontSize: '26px'}}>Event Location</th>
+        </tr>
         {props.eventsHosting.data.map((event) => (
-          <Event eventDetails={event.details} eventLocation={event.location} />
-        ))}
-      </Container>
+          <Event eventDetails={event.details} eventLocation={event.location} eventName = {event.name} finalizedStartTime = {event.finalized_start_time} finalizedEndTime = {event.finalized_end_time} />
+        ))}      
+        </table>
+      </div>
     </Box>
   );
 };

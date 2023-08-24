@@ -13,10 +13,15 @@ import {
 
 const Event = ({ eventDetails, eventLocation }) => {
   return (
-    <Container>
-      <Typography>Event Details: {eventDetails} Location: {eventLocation}</Typography>
-    </Container>
+      <table>
+        <tr>
+          <td>{eventDetails}</td>
+          <td>{eventLocation}</td>
+        </tr>
+      </table>
   );
 };
 
 export default Event;
+
+{/* <Typography>Event Details: {eventDetails} Location: {eventLocation}</Typography> */}

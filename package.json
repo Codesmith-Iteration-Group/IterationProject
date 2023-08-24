@@ -4,7 +4,6 @@
   "description": "HIIIII",
   "main": "index.js",
   "scripts": {
-    // "test": "node __tests__/supertest.js",
     "test": "jest -- verbose",
     "server": "nodemon server/server.js",
     "build": "NODE_ENV=production webpack",

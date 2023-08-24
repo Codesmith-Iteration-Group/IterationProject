@@ -14,18 +14,22 @@ const eventsParticipatingIn = (props) => {
   console.log('props in eventsParticipating in: ', props)
   // return component render
   return (
-    <div>
+
       <Box flex="1">
-        <Typography variant="h5" marginBottom="1rem">
-          Events you are participating in:
-        </Typography>
-				<Container>
-					{props.eventsParticipatingIn.data.map((event) => ( 
+        <div> 
+        <h1>Events you are participating in</h1>
+        <table>
+        <tr>
+          <th style={{paddingRight: '200px', fontSize: '26px'}}>Event Name</th>
+          <th style={{paddingRight: '200px', fontSize: '26px'}}>Event Details</th>
+          <th style={{paddingRight: '200px', fontSize: '26px'}}>Event Location</th>
+        </tr>
+        {props.eventsParticipatingIn.data.map((event) => ( 
             <Event eventName={event.location}/> 
-          ))}
-				</Container>
+          ))}     
+        </table>
+        </div>
       </Box>
-    </div>
   );
 };
 

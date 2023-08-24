@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, connect } from "react-redux";
 import * as actions from "../actions/actions";
+import {
+  Box,
+  Button,
+  Typography,
+  Container,
+  Divider,
+  Notification,
+} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 
 // import the components below
@@ -19,6 +28,7 @@ const mapStateToProps = ({
 // const [eventsHosting, setEventsHosting] = useState();
 
 const homePage = (props) => {
+  const navigate = useNavigate();
   // grab necessary pieces of state assigned to variables from store (useSelector)
   let result;
   useEffect(() => {
@@ -37,6 +47,13 @@ const homePage = (props) => {
   return (
     <div>
       <h1>Home Page</h1>
+      <Button
+          variant='contained'
+          color='primary'
+          onClick={() => navigate('/user/createEvent')}
+        >
+          + Create new event
+        </Button>
       <EventsHosting {...props} />
       <EventsParticipatingIn {...props} />
     </div>
